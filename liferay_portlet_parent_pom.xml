@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Juha-Matti Lehtinen / CSC -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven
+.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>fi.csc.avaa</groupId>
+	<artifactId>liferay-portlet-maven-parent</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>liferay-portlet-maven-parent</name>
+	
+	<profiles>
+		<profile>
+			<id>liferay</id>
+			<properties>
+				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      			<skipTests>true</skipTests>
+		 		<liferay.version>6.2.2</liferay.version>
+	  			<plugin.type>portlet</plugin.type>
+	      		
+	      		<liferay.maven.plugin.version>${liferay.version}
+				</liferay.maven.plugin.version>
+			
+		      	<!-- CSC developer: MODIFY liferay.base.dir to point to your liferay-portal directory! -->
+				<liferay.base.dir>${env.LIFERAY_HOME}
+				</liferay.base.dir>
+				
+				<liferay.app.server.dir>${liferay.base.dir}/tomcat</liferay.app.server.dir>
+		
+				<liferay.auto.deploy.dir>${liferay.base.dir}/deploy
+				</liferay.auto.deploy.dir>
+				
+				<!--Direct deploy MOJO seems to be copying META-INF and WEB-INF with xmls 
+					to liferay.app.server.deploy.dir so must point to ROOT -->
+				<liferay.app.server.deploy.dir>${liferay.base.dir}/tomcat/webapps/ROOT
+				</liferay.app.server.deploy.dir>
+				
+				<liferay.app.server.lib.global.dir>${liferay.base.dir}/tomcat/lib/ext
+				</liferay.app.server.lib.global.dir>
+				
+				<liferay.app.server.portal.dir>${liferay.base.dir}/tomcat/webapps/ROOT
+				</liferay.app.server.portal.dir>
+				
+				<liferay.app.server.classes.portal.dir>${liferay.app.server.portal.dir}/WEB-INF/classes
+				</liferay.app.server.classes.portal.dir>
+	  		</properties>
+	  	</profile>
+	</profiles>
+
+	<repositories>
+		<repository>
+			<id>liferay-releases</id>
+			<url>https://repository.liferay.com/nexus/content/repositories/liferay-releases-ce/</url>
+		</repository>
+	</repositories>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>liferay-releases-plugins</id>
+			<url>http://repository.liferay.com/nexus/content/repositories/liferay-releases-ce/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<!-- Liferay dependencies -->
+		
+		<dependency>
+			<groupId>javax.portlet</groupId>
+			<artifactId>portlet-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>portal-service</artifactId>
+			<version>${liferay.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>util-java</artifactId>
+			<version>${liferay.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.liferay.maven.plugins</groupId>
+				<artifactId>liferay-maven-plugin</artifactId>
+				<version>${liferay.maven.plugin.version}</version>
+				<configuration>
+					<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
+					<appServerDeployDir>${liferay.app.server.deploy.dir}</appServerDeployDir>
+					<appServerLibGlobalDir>${liferay.app.server.lib.global.dir}</appServerLibGlobalDir>
+					<appServerPortalDir>${liferay.app.server.portal.dir}</appServerPortalDir>
+					<liferayVersion>${liferay.version}</liferayVersion>
+					<pluginType>portlet</pluginType>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+   
+</project>
