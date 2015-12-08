@@ -60,15 +60,9 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-server</artifactId>
 			<version>${vaadin.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		
-		<!-- Junnu 15.10.2014: Modified this dependency, was: vaadin-client-compiled and scope was not defined
-			     This is because mvn:package warned about being unable to fetch vaadin-client-compiler -->
-			<!--dependency>
-				<groupId>com.vaadin</groupId>
-				<artifactId>vaadin-client-compiled</artifactId>
-				<version>${vaadin.version}</version>
-			</dependency-->
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-client-compiler</artifactId>
@@ -87,7 +81,15 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-themes</artifactId>
 			<version>${vaadin.version}</version>
+			<scope>provided</scope>
 		</dependency>
+		
+		<!-- Other Vaadin dependencies should be added per project.
+			NOTE: Vaadin jars which can be found in Liferay's webapps/ROOT/WEB-INF/lib folder should be referred in
+			portlet's liferay-plugin-package.properties file as
+			
+			portal-dependency-jars=vaadin-server.jar,vaadin-shared.jar,jsoup.jar
+		 -->
 
 	</dependencies>
 	
