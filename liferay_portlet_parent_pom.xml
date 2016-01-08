@@ -17,13 +17,13 @@
 			<properties>
 				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 				<skipTests>true</skipTests>
-				<liferay.version>6.2.2</liferay.version>
+				<liferay.version>6.2.4</liferay.version>
 				<plugin.type>portlet</plugin.type>
-
+				
 				<liferay.maven.plugin.version>${liferay.version}
 				</liferay.maven.plugin.version>
 
-				<!-- CSC developer: MODIFY liferay.base.dir to point to your liferay-portal 
+				<!-- AVAA developer: MODIFY liferay.base.dir to point to your liferay-portal 
 					directory! -->
 				<liferay.base.dir>${env.LIFERAY_HOME}
 				</liferay.base.dir>
@@ -112,15 +112,15 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>2.47.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -149,6 +149,7 @@
 				<groupId>com.liferay.maven.plugins</groupId>
 				<artifactId>liferay-maven-plugin</artifactId>
 				<version>${liferay.maven.plugin.version}</version>
+				
 				<configuration>
 					<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
 					<appServerDeployDir>${liferay.app.server.deploy.dir}
@@ -158,7 +159,7 @@
 					<appServerPortalDir>${liferay.app.server.portal.dir}
 					</appServerPortalDir>
 					<liferayVersion>${liferay.version}</liferayVersion>
-					<pluginType>portlet</pluginType>
+					<pluginType>${plugin.type}</pluginType>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -174,6 +175,7 @@
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
+			
 		</plugins>
 	</build>
 

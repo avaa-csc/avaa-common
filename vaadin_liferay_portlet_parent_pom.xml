@@ -19,7 +19,7 @@
 	</parent>	
 
 	<properties>
-		<vaadin.version>7.5.0</vaadin.version>
+		<vaadin.version>7.6.0</vaadin.version>
      	<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
  	</properties>
 
@@ -88,7 +88,7 @@
 			NOTE: Vaadin jars which can be found in Liferay's webapps/ROOT/WEB-INF/lib folder should be referred in
 			portlet's liferay-plugin-package.properties file as
 			
-			portal-dependency-jars=vaadin-server.jar,vaadin-shared.jar,jsoup.jar
+			portal-dependency-jars=vaadin-server.jar,vaadin-shared.jar,jsoup.jar,streamhtmlparser-jsilver.jar,flute.jar,guava.jar
 		 -->
 
 	</dependencies>
