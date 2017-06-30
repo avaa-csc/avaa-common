@@ -13,7 +13,7 @@
     <inherits name="com.vaadin.addon.charts.Widgetset" />
     
 
-    <inherits name="org.vaadin.addon.vol3.WidgetSet" />
+    
 
     <inherits name="org.vaadin.hene.popupbutton.widgetset.PopupbuttonWidgetset" />
 
